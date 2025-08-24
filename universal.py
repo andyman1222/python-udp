@@ -44,7 +44,7 @@ try:
 				bindAddr = val
 			elif arg in ("-p", "--p"):
 				port = int(val)
-		client.bind((bindAddr, 0))
+		client.bind((bindAddr, port))
 		print("Starting")
 		
 		listenThread.start()
