@@ -53,7 +53,7 @@ try:
 			if(len(message) == 0):
 				quitPrgm = True
 			else:
-				client.sendto(message, ("<broadcast>", port))
+				client.sendto(message, ("255.255.255.255", port))
 				print("message sent!", flush=True)
 				time.sleep(1)
 except:
