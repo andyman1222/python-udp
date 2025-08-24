@@ -19,10 +19,11 @@ client.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 
 server = False
+quitPrgm = False
 
 def receive():
 	print("listen thread start")
-	while not quit:
+	while not quitPrgm:
 		# Thanks @seym45 for a fix
 		try:
 			data, addr = client.recvfrom(1024)
@@ -40,19 +41,19 @@ try:
 				server = True'''
 		client.bind(("", 37020))
 		print("Starting")
-		quit = False
+		
 		listenThread.start()
-		while not quit:
+		while not quitPrgm:
 			message = input().encode('utf-8')
 			if(len(message) == 0):
-				quit = True
+				quitPrgm = True
 			else:
 				client.sendto(message, ("localhost", 37020))
 				print("message sent!", flush=True)
 				time.sleep(1)
 except:
 	print("interrupt")
-	quit = True
+	quitPrgm = True
 finally:
 	print("exiting")
 	client.close()
