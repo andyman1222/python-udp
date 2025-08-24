@@ -22,7 +22,7 @@ server = False
 
 def receive():
 	print("listen thread start")
-	while True:
+	while not quit:
 		# Thanks @seym45 for a fix
 		try:
 			data, addr = client.recvfrom(1024)
