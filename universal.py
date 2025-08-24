@@ -32,14 +32,19 @@ def receive():
 			print("Exception occurred in receive, probably socket close")
 
 listenThread = threading.Thread(None, receive)
+
+bindAddr = ""
+port = 1222
 try:
 	if __name__ == "__main__":
 	
-		'''args, vals = getopt.getopt(sys.argv[1:], "s", ["server"])
+		args, vals = getopt.getopt(sys.argv[1:], "s", ["server"])
 		for arg, val in args:
-			if arg in ("-s", "--server"):
-				server = True'''
-		client.bind(("", 37020))
+			if arg in ("-b", "--bind"):
+				bindAddr = val
+			elif arg in ("-p", "--p"):
+				port = int(val)
+		client.bind((bindAddr, 0))
 		print("Starting")
 		
 		listenThread.start()
@@ -48,7 +53,7 @@ try:
 			if(len(message) == 0):
 				quitPrgm = True
 			else:
-				client.sendto(message, ("localhost", 37020))
+				client.sendto(message, ("<broadcast>", port))
 				print("message sent!", flush=True)
 				time.sleep(1)
 except:
