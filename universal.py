@@ -52,6 +52,7 @@ try:
 				time.sleep(1)
 except:
 	print("interrupt")
+	quit = True
 finally:
 	print("exiting")
 	client.close()
